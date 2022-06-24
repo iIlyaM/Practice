@@ -46,7 +46,7 @@
 
             <div class="result__area">
                 <p><b>Tags of your text:</b></p>
-                <p><textarea placeholder="Your tags here.." class="result__field"></textarea></p>
+                <p><textarea placeholder="Your tags here.." class="result__field">{% if record.received_tags %} {{ record.received_tags }} {% endif %}</textarea></p>
             </div>
         </div>
     </div>

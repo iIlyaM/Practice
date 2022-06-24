@@ -7,8 +7,11 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout, login
 
 
+
 def home(request):
-    return render(request, 'text_classifier_app/home.html')
+    if request.user.is_authenticated:
+        return render(request, 'text_classifier_app/home.html')
+    return redirect('register')
 
 
 class RegisterUser(CreateView):
@@ -38,6 +41,18 @@ def logout_user(request):
 class AddRecord(LoginRequiredMixin, CreateView):
     form_class = RecordForm
     template_name = 'text_classifier_app/addrecord.html'
+
+    def form_valid(self, form):
+        super(AddRecord, self).form_valid(form)
+        record = UserRecord.objects.last()
+        rec = {
+            "record": record
+        }
+        return render(self.request, 'text_classifier_app/home.html', {'record': record})
+
+
+
+
 
     # def get_context_data(self, *, object_list=None, **kwargs):
     #     context = super().get_context_data(**kwargs)

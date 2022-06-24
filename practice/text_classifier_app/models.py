@@ -7,5 +7,5 @@ class UserRecord(models.Model):
     received_tags = models.CharField(max_length=100)
 
     def get_absolute_url(self):
-        return 'http://127.0.0.1:8000/'
+        return '/'
 
