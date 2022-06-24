@@ -1,0 +1,51 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{%static 'admin/css/style.css' %}">
+     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,700&amp;subset=cyrillic-ext" rel="stylesheet">
+    <title>Classifier</title>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="header__logo"></div>
+            <nav class="nav">
+				{% if request.user.is_authenticated %}
+				{{user.username}}<a class="sign" href="{% url 'logout' %}">Logout</a>
+				{% else %}
+				<a class="sign" href="{% url 'register' %}">Sign up</a> <a href="{% url 'login' %}">Sign in</a>
+				{% endif %}
+
+
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="intro">
+    <div class="container">
+        <div class="intro__inner">
+            <h2 class="intro__suptitle">Text Classifier</h2>
+            <form method="post">
+                {% csrf_token %}
+
+            {% for f in form %}
+            <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+            <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
+
+                <button type="submit">Sign up</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

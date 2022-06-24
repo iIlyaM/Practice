@@ -1,0 +1,59 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{%static 'admin/css/style.css' %}">
+     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:400,700&amp;subset=cyrillic-ext" rel="stylesheet">
+    <title>Classifier</title>
+</head>
+<body>
+
+
+<header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <div class="header__logo"></div>
+            <nav class="nav">
+				{% if request.user.is_authenticated %}
+				{{user.username}}<a class="sign" href="{% url 'logout' %}">Logout</a>
+				{% else %}
+				<a class="sign" href="{% url 'register' %}">Sign up</a> <a href="{% url 'login' %}">Sign in</a>
+				{% endif %}
+
+
+            </nav>
+        </div>
+    </div>
+</header>
+
+
+<div class="intro">
+    <div class="container">
+        <div class="intro__inner">
+            <h2 class="intro__suptitle">Text Classifier</h2>
+            <h1 class="intro__title">Welcome to T.C</h1>
+
+            <div class="enter__area">
+                <p><b>Enter your text:</b></p>
+                <form method="post">
+                {% csrf_token %}
+                <p><textarea placeholder="Your text here.." class="enter__field"></textarea></p>
+
+                <button type="submit">Get tags</button>
+                </form>
+            </div>
+
+            <div class="result__area">
+                <p><b>Tags of your text:</b></p>
+                <p><textarea placeholder="Your tags here.." class="result__field"></textarea></p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VagrantProjectSettings">
+    <option name="envs">
+      <map>
+        <entry key="DATABASE_HOST" value="localhost" />
+        <entry key="DATABASE_NAME" value="practice_db" />
+        <entry key="DATABASE_PASSWORD" value="6201111" />
+        <entry key="DATABASE_PORT" value="5432" />
+        <entry key="DJANGO_SETTINGS_MODULE" value="practice.settings" />
+        <entry key="PYTHONUNBUFFERED" value="1" />
+      </map>
+    </option>
+    <option name="instanceFolder" value="" />
+    <option name="provider" value="" />
+  </component>
+</project>
