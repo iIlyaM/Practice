@@ -35,11 +35,12 @@
 
             <div class="enter__area">
                 <p><b>Enter your text:</b></p>
-                <form method="post">
-                {% csrf_token %}
-                <p><textarea placeholder="Your text here.." class="enter__field"></textarea></p>
-
-                <button type="submit">Get tags</button>
+                <form action=" {% url 'addrecord' %}" method="post">
+                    {% csrf_token %}
+{#                    {{ form.as_p }}#}
+                    <input type="hidden" name="user_login" value="{{ user.username }}">
+                <p><textarea placeholder="Your text here.." class="enter__field" id="input_text" name="input_text"></textarea></p>
+                    <button type="submit">Get tags</button>
                 </form>
             </div>
 

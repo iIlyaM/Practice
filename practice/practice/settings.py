@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-md1_5r3-dg1-t@4_oy*+288@ywv$rq7p28f@!1ab-+5!#q*4e(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'practice.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': environ['DATABASE_NAME'],
-        'USER': environ.setdefault('DB_USER', 'postgres'),
-        'PASSWORD': environ['DATABASE_PASSWORD'],
-        'HOST': environ['DATABASE_HOST'],
-        'PORT': environ['DATABASE_PORT'],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

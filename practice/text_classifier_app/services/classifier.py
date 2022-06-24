@@ -7,6 +7,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import numpy as np
 import logging
 import pickle
+from django.conf import settings
 
 
 def tokenize_url(url: str):
@@ -137,7 +138,7 @@ def train_model(df, field="text_desc", feature_rep="binary", top_k=3):
 
 
 if __name__ == '__main__':
-    df = pd.read_json("news_category_dataset.json", lines=True)
+    df = pd.read_json(settings.BASE_DIR /"practice/text_classifier_app/services/json/dataset.json", lines=True)
 
     df['tokenized_url'] = df['link'].apply(lambda x: tokenize_url(x))
     # just the description
@@ -157,15 +158,15 @@ if __name__ == '__main__':
     # test_features = transformer.transform(["The premise for Chie Hayakawa’s film, “Plan 75,” is shocking: a government push to euthanize the elderly. In a rapidly aging society, some also wonder: Is the movie prescient?"])
     # print(get_top_k_predictions(model, test_features, 3))
 
-    model_path = "models/model.pkl"
-    transformer_path = "models/transformer.pkl"
+    model_path = "practice/text_classifier_app/services/model.pkl"
+    transformer_path = "practice/text_classifier_app/services/transformer.pkl"
 
     # we need to save both the transformer -> to encode a document and the model itself to make predictions based on the weight vectors
     pickle.dump(model, open(model_path, 'wb'))
     pickle.dump(transformer, open(transformer_path, 'wb'))
 
-    loaded_model = pickle.load(open(model_path, 'rb'))
-    loaded_transformer = pickle.load(open(transformer_path, 'rb'))
+    # loaded_model = pickle.load(open(model_path, 'rb'))
+    # loaded_transformer = pickle.load(open(transformer_path, 'rb'))
 
     # test_features = loaded_transformer.transform(["President Trump AND THE impeachment story !!!"])
     # get_top_k_predictions(loaded_model, test_features, 2)
